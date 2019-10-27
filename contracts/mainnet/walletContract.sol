@@ -18,12 +18,18 @@ contract wallet{
        _signatureParams[1] = r
        _signatureParams[2] = s
     */
-    constructor(bytes memory _userName,address _userManagerAddress, bytes32[] memory _signatureParams, uint8 _v )public {
-        userName = _userName;   
+    constructor(address _userManagerAddress, bytes32[] memory _signatureParams, uint8 _v )public {
         userManagerAddress = _userManagerAddress;
         user = ecrecover(_signatureParams[0], _v, _signatureParams[1], _signatureParams[2]);
     }
-        
+    
+    // function execute0(address _param1, address _param2, uint _param3, uint _param4, bytes memory _param5)public {
+    //     _userManager = userManager(userManagerAddress);
+    //     _walletLogic = walletLogic(walletLogicContractAddress);
+    //     require( _userManager.isValidRelayer(msg.sender) == true || authorisedAddresses[msg.sender] == true, "Not a valid Relayer");
+    //     _walletLogic.execute(_param1, _param2, _param3, _param4, _param5);// change to delegate call
+    // }
+    
     /* _signatureParams[0] = messageHash
        _signatureParams[1] = r
        _signatureParams[2] = s
